@@ -1,15 +1,15 @@
 {
-  "name": "wangeditor",
-  "title": "wangEditor",
+  "name": "cqeditor",
+  "title": "cqEditor",
   "version": "3.1.1",
-  "description": "wangEditor - 基于javascript和css开发的 web 富文本编辑器， 轻量、简洁、易用、开源免费",
+  "description": "cqEditor - 基于javascript和css开发的 web 富文本编辑器， 轻量、简洁、易用、开源免费",
   "homepage": "http://wangeditor.github.io/",
   "author": {
     "name": "wangfupeng1988",
     "url": "https://github.com/wangfupeng1988"
   },
   "keywords": [
-    "wangEditor",
+    "cqEditor",
     "web 富文本编辑器"
   ],
   "main": "release/wangEditor.js",
@@ -23,7 +23,7 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/wangfupeng1988/wangEditor"
+      "url": "https://github.com/NickBang/cqEditor"
     }
   ],
   "scripts": {
