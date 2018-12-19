@@ -359,6 +359,11 @@
   margin: 10px 0;
   line-height: 1.5;
 }
+.w-e-text h5 {
+  /*cq css 引用使用H5标签替代*/
+  font-style: normal;
+  color: #ccc;
+}
 .w-e-text ul,
 .w-e-text ol {
   margin: 10px 0 10px 20px;

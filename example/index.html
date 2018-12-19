@@ -14,7 +14,6 @@
     <div class="body">
         <p>可访问 <a href="http://www.wangeditor.com/" target="_blank">wangEditor 官网</a> 了解更多内容</p>
         <div id="div1">
-            <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
         </div>
 
         <p>wangEditor demo list（demo页面直接查看网页源代码即可）</p>
@@ -46,9 +45,6 @@
                 <li><a href="icomoon/demo.html" target="_blank">菜单图标</a></li>
             </ul>
         </div>
-
-        <p>向我捐赠</p>
-        <img src="./pay.png"/>
     </div>
 
     <!-- 引用js -->
@@ -56,6 +52,24 @@
     <script type="text/javascript">
         var E = window.wangEditor
         var editor = new E('#div1')
+        editor.customConfig.uploadImgServer = 'http://demo.intr.enjoyreading.net/fileupload'
+        // 自定义菜单配置
+        editor.customConfig.menus = [
+            'head',  // 标题
+            'bold',  // 粗体
+            'fontSize',  // 字号
+            'italic',  // 斜体
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'list',  // 列表
+            'quote',  // 引用
+            'image',  // 插入图片
+            'video',  // 插入视频
+            'undo'  // 撤销
+        ]
+
+        editor.customConfig.uploadFileName = 'file'
         editor.create()
     </script>
 </body>

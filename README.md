@@ -3,6 +3,7 @@
 
 ## 介绍
 
+#### fork for wangEditor
 **wangEditor** —— 轻量级 web 富文本编辑器，配置方便，使用简单。支持 IE10+ 浏览器。
 
 - 官网：[www.wangEditor.com](http://www.wangeditor.com/)

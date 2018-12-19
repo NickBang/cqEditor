@@ -111,15 +111,16 @@ Image.prototype = {
             }
         ]
 
+        // cq 关闭编辑图片的按钮s
         // 创建 panel 并显示
-        const panel = new Panel(this, {
-            width: 300,
-            tabs: tabsConfig
-        })
-        panel.show()
+        // const panel = new Panel(this, {
+        //     width: 300,
+        //     tabs: tabsConfig
+        // })
+        // panel.show()
 
         // 记录属性
-        this.panel = panel
+        // this.panel = panel
     },
 
     _createInsertPanel: function () {

@@ -19,12 +19,12 @@ function Head(editor) {
         $title: $('<p>设置标题</p>'),
         type: 'list', // droplist 以列表形式展示
         list: [
-            { $elem: $('<h1>H1</h1>'), value: '<h1>' },
-            { $elem: $('<h2>H2</h2>'), value: '<h2>' },
-            { $elem: $('<h3>H3</h3>'), value: '<h3>' },
-            { $elem: $('<h4>H4</h4>'), value: '<h4>' },
-            { $elem: $('<h5>H5</h5>'), value: '<h5>' },
-            { $elem: $('<p>正文</p>'), value: '<p>' }
+            { $elem: $('<h1>H1</h1>'), value: '<h1>' }
+            // { $elem: $('<h2>H2</h2>'), value: '<h2>' },
+            // { $elem: $('<h3>H3</h3>'), value: '<h3>' },
+            // { $elem: $('<h4>H4</h4>'), value: '<h4>' },
+            // { $elem: $('<h5>H5</h5>'), value: '<h5>' },
+            // { $elem: $('<p>正文</p>'), value: '<p>' }
         ],
         onClick: (value) => {
             // 注意 this 是指向当前的 Head 对象
