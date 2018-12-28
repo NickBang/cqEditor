@@ -52,7 +52,10 @@ UploadImg.prototype = {
             }
         }
 
-        editor.cmd.do('insertHTML', `<img src="${link}" style="max-width:100%;"/>`)
+        editor.cmd.do('insertHTML', '<div class="cq-div">' +
+            '<img src="'+ link + '"/>' +
+            '</div>'
+        )
 
         // 验证图片 url 是否有效，无效的话给出提示
         let img = document.createElement('img')

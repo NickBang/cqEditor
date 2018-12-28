@@ -1021,7 +1021,7 @@ function Head(editor) {
         width: 100,
         $title: $('<p>设置标题</p>'),
         type: 'list', // droplist 以列表形式展示
-        list: [{ $elem: $('<h1>H1</h1>'), value: '<h1>'
+        list: [{ $elem: $('<h1>H1</h1>'), value: '<h1>' }, { $elem: $('<h2>图片描述</h2>'), value: '<h5>'
             // { $elem: $('<h2>H2</h2>'), value: '<h2>' },
             // { $elem: $('<h3>H3</h3>'), value: '<h3>' },
             // { $elem: $('<h4>H4</h4>'), value: '<h4>' },
@@ -4068,7 +4068,7 @@ UploadImg.prototype = {
             }
         }
 
-        editor.cmd.do('insertHTML', '<img src="' + link + '" style="max-width:100%;"/>');
+        editor.cmd.do('insertHTML', '<div class="cq-div">' + '<img src="' + link + '"/>' + '</div>');
 
         // 验证图片 url 是否有效，无效的话给出提示
         var img = document.createElement('img');

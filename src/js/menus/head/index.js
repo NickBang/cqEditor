@@ -19,7 +19,8 @@ function Head(editor) {
         $title: $('<p>设置标题</p>'),
         type: 'list', // droplist 以列表形式展示
         list: [
-            { $elem: $('<h1>H1</h1>'), value: '<h1>' }
+            { $elem: $('<h1>H1</h1>'), value: '<h1>' },
+            { $elem: $('<h2>图片描述</h2>'), value: '<h5>' }
             // { $elem: $('<h2>H2</h2>'), value: '<h2>' },
             // { $elem: $('<h3>H3</h3>'), value: '<h3>' },
             // { $elem: $('<h4>H4</h4>'), value: '<h4>' },
