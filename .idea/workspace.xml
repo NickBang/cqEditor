@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46bb4c74-0089-4466-875b-565bb54d91c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/js/editor/upload/upload-video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/example/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/wangEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/wangEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/wangEditor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/wangEditor.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/wangEditor.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/release/wangEditor.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/editor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/editor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/menus/video/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/menus/video/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46467066">
+    <splitter split-orientation="horizontal" split-proportion="0.40239522">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -34,15 +27,24 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-video.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
-                  <caret line="54" column="81" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
+                <state relative-caret-position="597">
+                  <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="e#16#90#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.eslintignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -64,6 +66,50 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/js/menus/head/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="340">
+                  <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/release/wangEditor.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="117">
+                  <caret line="1014" lean-forward="true" selection-start-line="1014" selection-end-line="1014" />
+                  <folding>
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#textarea#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#input#1;n#p#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#4#10#1" expanded="true" />
+                    <element signature="e#4#10#1" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#4#10#1" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/js/menus/img/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1395">
@@ -77,11 +123,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/js/menus/video/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="86" column="25" lean-forward="true" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+                <state relative-caret-position="77">
+                  <caret line="74" column="34" lean-forward="true" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="e#23#61#0" expanded="true" />
@@ -90,10 +136,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-img.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="488">
+                <state relative-caret-position="160">
                   <caret line="273" column="22" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -154,6 +200,7 @@
       <find>hooks</find>
       <find>insertLinkImg</find>
       <find>customInsert</find>
+      <find>h1</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -181,6 +228,7 @@
         <option value="$PROJECT_DIR$/example/index.html" />
         <option value="$PROJECT_DIR$/src/js/menus/video/index.js" />
         <option value="$PROJECT_DIR$/src/js/editor/upload/upload-video.js" />
+        <option value="$PROJECT_DIR$/.eslintignore" />
       </list>
     </option>
   </component>
@@ -203,44 +251,6 @@
             <path>
               <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
               <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="menus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="menus" type="462c0819:PsiDirectoryNode" />
-              <item name="video" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cqEditor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cqEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -302,8 +312,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.example" />
         <item itemvalue="npm.release" />
+        <item itemvalue="npm.example" />
       </list>
     </recent_temporary>
   </component>
@@ -319,12 +329,12 @@
       <updated>1544860175771</updated>
       <workItem from="1544860177239" duration="3983000" />
       <workItem from="1545104074611" duration="13695000" />
-      <workItem from="1545273095488" duration="62353000" />
+      <workItem from="1545273095488" duration="63629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88790000" />
+    <option name="totallyTimeSpent" value="90066000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -336,10 +346,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1000" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5977839" visible="true" weight="0.120589785" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5977839" visible="true" weight="0.120589785" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Gulp" order="2" sideWeight="0.500361" side_tool="true" weight="0.18696883" />
       <window_info id="npm" order="3" sideWeight="0.40221608" side_tool="true" weight="0.16619453" />
@@ -350,7 +360,7 @@
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5002633" side_tool="true" weight="0.30947137" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32963374" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.43722466" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.07599119" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -502,9 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.eslintignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -641,36 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/release/wangEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1121">
-          <caret line="4141" column="42" lean-forward="true" selection-start-line="4141" selection-start-column="42" selection-end-line="4141" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#p#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#4#10#1" expanded="true" />
-            <element signature="e#4#10#1" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#4#10#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/editor/upload/progress.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -735,16 +712,6 @@
     <entry file="file://$PROJECT_DIR$/example/server/util.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/menus/head/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="40" column="11" lean-forward="true" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-108">
@@ -780,17 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-img.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="273" column="22" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#16#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/menus/img/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1395">
@@ -805,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/menus/video/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="86" column="25" lean-forward="true" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+        <state relative-caret-position="77">
+          <caret line="74" column="34" lean-forward="true" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#23#61#0" expanded="true" />
@@ -814,14 +770,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-video.js">
+    <entry file="file://$PROJECT_DIR$/src/js/menus/head/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="54" column="81" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
+        <state relative-caret-position="340">
+          <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/wangEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="1014" lean-forward="true" selection-start-line="1014" selection-end-line="1014" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-img.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="273" column="22" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#16#90#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/editor/upload/upload-video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#16#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.eslintignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
