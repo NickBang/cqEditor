@@ -4,6 +4,7 @@
 node_modules/*
 npm-debug.log
 example/upload-files
+.idea
 
 # Windows image file caches
 Thumbs.db
