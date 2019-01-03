@@ -9,6 +9,7 @@ import Text from '../text/index.js'
 import Command from '../command/index.js'
 import selectionAPI from '../selection/index.js'
 import UploadImg from './upload/upload-img.js'
+import UploadVideo from './upload/upload-video.js'
 import { arrForEach, objForEach } from '../util/util.js'
 import { getRandom } from '../util/util.js'
 
@@ -197,6 +198,11 @@ Editor.prototype = {
         this.uploadImg = new UploadImg(this)
     },
 
+    // 添加视屏上传
+    _initUploadVideo: function () {
+        this.uploadVideo = new UploadVideo(this)
+    },
+
     // 初始化菜单
     _initMenus: function () {
         this.menus = new Menus(this)
@@ -322,6 +328,9 @@ Editor.prototype = {
 
         // 添加 图片上传
         this._initUploadImg()
+
+        // 添加 视频上传
+        this._initUploadVideo()
 
         // 初始化选区，将光标定位到内容尾部
         this.initSelection(true)
