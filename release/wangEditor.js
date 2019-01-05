@@ -2594,14 +2594,12 @@ Video.prototype = {
     },
 
     _createPanel: function _createPanel() {
-        var _this = this;
-
         var uploadVideo = editor.uploadVideo;
         // 创建 id
-        var upTriggerId = getRandom('up-trigger');
-        var upFileId = getRandom('up-file');
-        var textValId = getRandom('text-val');
-        var btnId = getRandom('btn');
+        var upAudioTriggerId = getRandom('up-audio-trigger');
+        var upAudioFileId = getRandom('up-audio-file');
+        var upVideoTriggerId = getRandom('up-video-trigger');
+        var upVideoFileId = getRandom('up-video-file');
 
         // 创建 panel
         var panel = new Panel(this, {
@@ -2609,42 +2607,16 @@ Video.prototype = {
             // 一个 panel 多个 tab
             tabs: [{
                 // 标题
-                title: '插入视频',
+                title: '插入音频',
                 // 模板
-                tpl: '<div>\n                        <input id="' + textValId + '" type="text" class="block" placeholder="\u683C\u5F0F\u5982\uFF1A<iframe src=... ></iframe>"/>\n                        <div class="w-e-button-container">\n                            <button id="' + btnId + '" class="right">\u63D2\u5165</button>\n                        </div>\n                    </div>',
+                tpl: '<div class="w-e-up-img-container">\n                    <div id="' + upAudioTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upAudioFileId + '" type="file" accept="audio/mpeg,audio/mp3"/>\n                    </div>\n                </div>',
                 // 事件绑定
                 events: [{
-                    selector: '#' + btnId,
+                    // 触发选择音频
+                    selector: '#' + upAudioTriggerId,
                     type: 'click',
                     fn: function fn() {
-                        var $text = $('#' + textValId);
-                        var val = $text.val().trim();
-
-                        // 测试用视频地址
-                        // <iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzc3MzM3Mg==' frameborder=0 'allowfullscreen'></iframe>
-
-                        if (val) {
-                            // 插入视频
-                            _this._insert(val);
-                        }
-
-                        // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                        return true;
-                    }
-                }]
-            }, // first tab end
-            {
-                // 标题
-                title: '插入视频',
-                // 模板
-                tpl: '<div class="w-e-up-img-container">\n                    <div id="' + upTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upFileId + '" type="file" accept="audio/mpeg,audio/mp4,video/mp4"/>\n                    </div>\n                </div>',
-                // 事件绑定
-                events: [{
-                    // 触发选择图片
-                    selector: '#' + upTriggerId,
-                    type: 'click',
-                    fn: function fn() {
-                        var $file = $('#' + upFileId);
+                        var $file = $('#' + upAudioFileId);
                         console.log($file);
                         var fileElem = $file[0];
                         if (fileElem) {
@@ -2655,11 +2627,11 @@ Video.prototype = {
                         }
                     }
                 }, {
-                    // 选择图片完毕
-                    selector: '#' + upFileId,
+                    // 选择音频完毕
+                    selector: '#' + upAudioFileId,
                     type: 'change',
                     fn: function fn() {
-                        var $file = $('#' + upFileId);
+                        var $file = $('#' + upAudioFileId);
                         var fileElem = $file[0];
                         if (!fileElem) {
                             // 返回 true 可关闭 panel
@@ -2669,7 +2641,51 @@ Video.prototype = {
                         // 获取选中的 file 对象列表
                         var fileList = fileElem.files;
                         if (fileList.length) {
-                            uploadVideo.uploadVideo(fileList);
+                            uploadVideo.uploadVideo(fileList, 'audio');
+                        }
+
+                        // 返回 true 可关闭 panel
+                        return true;
+                    }
+                }]
+            }, // first tab end
+            {
+                // 标题
+                title: '插入视频',
+                // 模板
+                tpl: '<div class="w-e-up-img-container">\n                    <div id="' + upVideoTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upVideoFileId + '" type="file" accept="video/mp4"/>\n                    </div>\n                </div>',
+                // 事件绑定
+                events: [{
+                    // 触发选择视频
+                    selector: '#' + upVideoTriggerId,
+                    type: 'click',
+                    fn: function fn() {
+                        var $file = $('#' + upVideoFileId);
+                        console.log($file);
+                        var fileElem = $file[0];
+                        if (fileElem) {
+                            fileElem.click();
+                        } else {
+                            // 返回 true 可关闭 panel
+                            return true;
+                        }
+                    }
+                }, {
+                    // 选择视频完毕
+                    selector: '#' + upVideoFileId,
+                    type: 'change',
+                    fn: function fn() {
+                        var $file = $('#' + upVideoFileId);
+                        var fileElem = $file[0];
+                        if (!fileElem) {
+                            // 返回 true 可关闭 panel
+                            return true;
+                        }
+
+                        // 获取选中的 file 对象列表
+                        var fileList = fileElem.files;
+                        if (fileList.length) {
+                            uploadVideo.uploadVideo(fileList, 'video');
                         }
 
                         // 返回 true 可关闭 panel
@@ -4411,7 +4427,7 @@ UploadVideo.prototype = {
     },
 
     // 根据链接插入图片
-    insertLinkVideo: function insertLinkVideo(link) {
+    insertLinkVideo: function insertLinkVideo(link, type) {
         var _this2 = this;
 
         if (!link) {
@@ -4431,11 +4447,20 @@ UploadVideo.prototype = {
                 return;
             }
         }
-
-        editor.cmd.do('insertHTML', '<video src="' + link + '" controls="controls"></video>');
+        // type 区分音频视频
+        if (type === 'video') {
+            editor.cmd.do('insertHTML', '<video src="' + link + '" controls="controls"></video>');
+        } else {
+            editor.cmd.do('insertHTML', '<audio src="' + link + '" controls="controls"></audio>');
+        }
 
         // 验证图片 url 是否有效，无效的话给出提示
-        var video = document.createElement('video');
+        var video = void 0;
+        if (type === 'video') {
+            video = document.createElement('video');
+        } else {
+            video = document.createElement('audio');
+        }
         video.onload = function () {
             var callback = config.linkImgCallback;
             if (callback && typeof callback === 'function') {
@@ -4447,7 +4472,7 @@ UploadVideo.prototype = {
         video.onerror = function () {
             video = null;
             // 无法成功下载图片
-            _this2._alert('插入图片错误', 'wangEditor: \u63D2\u5165\u56FE\u7247\u51FA\u9519\uFF0C\u56FE\u7247\u94FE\u63A5\u662F "' + link + '"\uFF0C\u4E0B\u8F7D\u8BE5\u94FE\u63A5\u5931\u8D25');
+            _this2._alert('插入文件错误', 'wangEditor: \u63D2\u5165\u6587\u4EF6\u51FA\u9519\uFF0C\u56FE\u7247\u94FE\u63A5\u662F "' + link + '"\uFF0C\u4E0B\u8F7D\u8BE5\u94FE\u63A5\u5931\u8D25');
             return;
         };
         video.onabort = function () {
@@ -4457,7 +4482,7 @@ UploadVideo.prototype = {
     },
 
     // 上传视频
-    uploadVideo: function uploadVideo(files) {
+    uploadVideo: function uploadVideo(files, type) {
         var _this3 = this;
 
         if (!files || !files.length) {
@@ -4507,7 +4532,7 @@ UploadVideo.prototype = {
 
             if (/\.(mp3|mp4)$/i.test(name) === false) {
                 // 后缀名不合法，不是视频
-                errInfo.push('\u3010' + name + '\u3011\u4E0D\u662F\u89C6\u9891\u6587\u4EF6');
+                errInfo.push('\u3010' + name + '\u3011\u4E0D\u662F\u89C6\u9891/\u97F3\u9891\u6587\u4EF6');
                 return;
             }
             // if (maxSize < size) {
@@ -4530,12 +4555,12 @@ UploadVideo.prototype = {
         }
 
         // ------------------------------ 自定义上传 ------------------------------
-        // if (customUploadVideo && typeof customUploadVideo === 'function') {
-        //     customUploadVideo(resultFiles, this.insertLinkVideo.bind(this))
-        //
-        //     // 阻止以下代码执行
-        //     return
-        // }
+        if (customUploadVideo && typeof customUploadVideo === 'function') {
+            customUploadVideo(resultFiles, this.insertLinkVideo.bind(this));
+
+            // 阻止以下代码执行
+            return;
+        }
 
         // 添加视频数据
         var formdata = new FormData();
@@ -4583,7 +4608,7 @@ UploadVideo.prototype = {
                     hooks.timeout(xhr, editor);
                 }
 
-                _this3._alert('上传图片超时');
+                _this3._alert('上传文件超时');
             };
 
             // 监控 progress
@@ -4610,7 +4635,7 @@ UploadVideo.prototype = {
                         }
 
                         // xhr 返回状态错误
-                        _this3._alert('上传图片发生错误', '\u4E0A\u4F20\u56FE\u7247\u53D1\u751F\u9519\u8BEF\uFF0C\u670D\u52A1\u5668\u8FD4\u56DE\u72B6\u6001\u662F ' + xhr.status);
+                        _this3._alert('上传发生错误', '\u4E0A\u4F20\u53D1\u751F\u9519\u8BEF\uFF0C\u670D\u52A1\u5668\u8FD4\u56DE\u72B6\u6001\u662F ' + xhr.status);
                         return;
                     }
 
@@ -4630,17 +4655,17 @@ UploadVideo.prototype = {
                     }
                     if (!result.success) {
                         // 数据错误
-                        _this3._alert('上传图片失败', '上传图片返回结果错误，返回结果 errno=' + result.message);
+                        _this3._alert('上传视频失败', '上传图片返回结果错误，返回结果 errno=' + result.message);
                     } else {
                         if (hooks.customInsert && typeof hooks.customInsert === 'function') {
                             console.log(hooks);
                             // 使用者自定义插入方法
-                            hooks.customInsert(_this3.insertLinkVideo.bind(_this3), result, editor);
+                            hooks.customInsert(_this3.insertLinkVideo.bind(_this3), result, editor, type);
                         } else {
                             // 将图片插入编辑器
                             var data = result.data || [];
                             data.forEach(function (link) {
-                                _this3.insertLinkVideo(link);
+                                _this3.insertLinkVideo(link, type);
                             });
                         }
 

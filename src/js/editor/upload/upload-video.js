@@ -33,7 +33,7 @@ UploadVideo.prototype = {
     },
 
     // 根据链接插入图片
-    insertLinkVideo: function (link) {
+    insertLinkVideo: function (link, type) {
         if (!link) {
             return
         }
@@ -51,11 +51,25 @@ UploadVideo.prototype = {
                 return
             }
         }
+        // type 区分音频视频
+        if (type === 'video') {
+            editor.cmd.do('insertHTML',
+                '<video src="' + link + '" controls="controls"></video>'
+            )
+        } else {
+            editor.cmd.do('insertHTML',
+                '<audio src="' + link + '" controls="controls"></audio>'
+            )
+        }
 
-        editor.cmd.do('insertHTML','<video src="' + link + '" controls="controls"></video>')
 
         // 验证图片 url 是否有效，无效的话给出提示
-        let video = document.createElement('video')
+        let video
+        if (type === 'video') {
+            video = document.createElement('video')
+        } else {
+            video = document.createElement('audio')
+        }
         video.onload = () => {
             const callback = config.linkImgCallback
             if (callback && typeof callback === 'function') {
@@ -67,7 +81,7 @@ UploadVideo.prototype = {
         video.onerror = () => {
             video = null
             // 无法成功下载图片
-            this._alert('插入图片错误', `wangEditor: 插入图片出错，图片链接是 "${link}"，下载该链接失败`)
+            this._alert('插入文件错误', `wangEditor: 插入文件出错，图片链接是 "${link}"，下载该链接失败`)
             return
         }
         video.onabort = () => {
@@ -77,7 +91,7 @@ UploadVideo.prototype = {
     },
 
     // 上传视频
-    uploadVideo: function (files) {
+    uploadVideo: function (files, type) {
         if (!files || !files.length) {
             return
         }
@@ -125,7 +139,7 @@ UploadVideo.prototype = {
 
             if (/\.(mp3|mp4)$/i.test(name) === false) {
                 // 后缀名不合法，不是视频
-                errInfo.push(`【${name}】不是视频文件`)
+                errInfo.push(`【${name}】不是视频/音频文件`)
                 return
             }
             // if (maxSize < size) {
@@ -148,12 +162,12 @@ UploadVideo.prototype = {
         }
 
         // ------------------------------ 自定义上传 ------------------------------
-        // if (customUploadVideo && typeof customUploadVideo === 'function') {
-        //     customUploadVideo(resultFiles, this.insertLinkVideo.bind(this))
-        //
-        //     // 阻止以下代码执行
-        //     return
-        // }
+        if (customUploadVideo && typeof customUploadVideo === 'function') {
+            customUploadVideo(resultFiles, this.insertLinkVideo.bind(this))
+
+            // 阻止以下代码执行
+            return
+        }
 
         // 添加视频数据
         const formdata = new FormData()
@@ -201,7 +215,7 @@ UploadVideo.prototype = {
                     hooks.timeout(xhr, editor)
                 }
 
-                this._alert('上传图片超时')
+                this._alert('上传文件超时')
             }
 
             // 监控 progress
@@ -228,7 +242,7 @@ UploadVideo.prototype = {
                         }
 
                         // xhr 返回状态错误
-                        this._alert('上传图片发生错误', `上传图片发生错误，服务器返回状态是 ${xhr.status}`)
+                        this._alert('上传发生错误', `上传发生错误，服务器返回状态是 ${xhr.status}`)
                         return
                     }
 
@@ -248,17 +262,17 @@ UploadVideo.prototype = {
                     }
                     if (!result.success) {
                         // 数据错误
-                        this._alert('上传图片失败', '上传图片返回结果错误，返回结果 errno=' + result.message)
+                        this._alert('上传视频失败', '上传图片返回结果错误，返回结果 errno=' + result.message)
                     } else {
                         if (hooks.customInsert && typeof hooks.customInsert === 'function') {
                             console.log(hooks)
                             // 使用者自定义插入方法
-                            hooks.customInsert(this.insertLinkVideo.bind(this), result, editor)
+                            hooks.customInsert(this.insertLinkVideo.bind(this), result, editor, type)
                         } else {
                             // 将图片插入编辑器
                             const data = result.data || []
                             data.forEach(link => {
-                                this.insertLinkVideo(link)
+                                this.insertLinkVideo(link, type)
                             })
                         }
 
