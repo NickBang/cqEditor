@@ -32,7 +32,7 @@ UploadVideo.prototype = {
         }
     },
 
-    // 根据链接插入图片
+    // 根据链接插入视频、音频
     insertLinkVideo: function (link, type) {
         if (!link) {
             return
@@ -51,14 +51,26 @@ UploadVideo.prototype = {
                 return
             }
         }
-        // type 区分音频视频
+        // type 区分音频视频(&nbsp;只是为了contenteditable="false"时给标签尾部站位,否则光标选取不到视频尾部,最后处理数据统一剔除&nbsp;)
         if (type === 'video') {
             editor.cmd.do('insertHTML',
-                '<video src="' + link + '" controls="controls"></video>'
+                // '<p id="cq_video"><video onmouseover="overIndex()" width="200px" src="' + link + '" controls="controls"></video></p>'
+                '<br><div contenteditable="true" class="cq-video" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
+                '<p contenteditable="false">' +
+                '<img onclick="closeVideo(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' +
+                '<video src="'+ link +'" controls="controls"></video>' +
+                '</p>' +
+                '</div>&nbsp;'
             )
         } else {
             editor.cmd.do('insertHTML',
-                '<audio src="' + link + '" controls="controls"></audio>'
+                // '&nbsp;<audio src="' + link + '" controls="controls"></audio>&nbsp;'
+                '<br><div contenteditable="true" class="cq-audio" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
+                '<p contenteditable="false">' +
+                '<img onclick="closeVideo(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' +
+                '<audio src="'+ link +'" controls="controls"></audio>' +
+                '</p>' +
+                '</div>&nbsp;'
             )
         }
 
@@ -70,23 +82,23 @@ UploadVideo.prototype = {
         } else {
             video = document.createElement('audio')
         }
-        video.onload = () => {
-            const callback = config.linkImgCallback
-            if (callback && typeof callback === 'function') {
-                callback(link)
-            }
-
-            video = null
-        }
-        video.onerror = () => {
-            video = null
-            // 无法成功下载图片
-            this._alert('插入文件错误', `wangEditor: 插入文件出错，图片链接是 "${link}"，下载该链接失败`)
-            return
-        }
-        video.onabort = () => {
-            video = null
-        }
+        // video.onload = () => {
+        //     const callback = config.linkImgCallback
+        //     if (callback && typeof callback === 'function') {
+        //         callback(link)
+        //     }
+        //
+        //     video = null
+        // }
+        // video.onerror = () => {
+        //     video = null
+        //     // 无法成功下载图片
+        //     this._alert('插入文件错误', `wangEditor: 插入文件出错，图片链接是 "${link}"，下载该链接失败`)
+        //     return
+        // }
+        // video.onabort = () => {
+        //     video = null
+        // }
         video.src = link
     },
 
@@ -152,14 +164,14 @@ UploadVideo.prototype = {
             resultFiles.push(file)
         })
         // 抛出验证信息
-        if (errInfo.length) {
-            this._alert('图片验证未通过: \n' + errInfo.join('\n'))
-            return
-        }
-        if (resultFiles.length > maxLength) {
-            this._alert('一次最多上传' + maxLength + '张图片')
-            return
-        }
+        // if (errInfo.length) {
+        //     this._alert('图片验证未通过: \n' + errInfo.join('\n'))
+        //     return
+        // }
+        // if (resultFiles.length > maxLength) {
+        //     this._alert('一次最多上传' + maxLength + '张图片')
+        //     return
+        // }
 
         // ------------------------------ 自定义上传 ------------------------------
         if (customUploadVideo && typeof customUploadVideo === 'function') {

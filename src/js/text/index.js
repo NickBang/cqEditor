@@ -137,8 +137,8 @@ Text.prototype = {
         // tab 特殊处理
         this._tabHandle()
 
-        // img 点击
-        this._imgHandle()
+        // img 点击(cq del)
+        // this._imgHandle()
 
         // 拖拽事件
         this._dragHandle()

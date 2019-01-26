@@ -236,6 +236,9 @@ const config = {
     // 是否上传七牛云，默认为 false
     qiniu: false,
 
+    // 插入推荐书籍搜索书籍url
+    searchBookServer: ''
+
     // 上传图片自定义提示方法
     // customAlert: function (info) {
     //     // 自定义上传提示

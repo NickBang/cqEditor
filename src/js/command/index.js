@@ -84,6 +84,7 @@ Command.prototype = {
 
     // 封装 execCommand
     _execCommand: function (name, value) {
+        console.log(value)
         document.execCommand(name, false, value)
     },
 
