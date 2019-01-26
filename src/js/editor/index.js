@@ -85,7 +85,7 @@ Editor.prototype = {
                             .css('border', '1px solid #ccc')
             $textContainerElem.css('border', '1px solid #ccc')
                             .css('border-top', 'none')
-                            .css('min-height', '300px')
+                            .css('height', '800px')
         } else {
             // toolbar 和 text 的选择器都有值，记录属性
             $toolbarElem = $toolbarSelector
