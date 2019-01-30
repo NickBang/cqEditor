@@ -44,6 +44,7 @@ Video.prototype = {
                     title: '插入音频',
                     // 模板
                     tpl: `<div class="w-e-up-img-container">
+                    <div style="font-size: 14px">格式支持MP3音频格式，文件大小不超过10M</div>
                     <div id="${upAudioTriggerId}" class="w-e-up-btn">
                         <i class="w-e-icon-upload2"></i>
                     </div>
@@ -98,6 +99,7 @@ Video.prototype = {
                     title: '插入视频',
                     // 模板
                     tpl: `<div class="w-e-up-img-container">
+                    <div style="font-size: 14px">标清分辨率的mp4格式视频，大小不超过200m</div>
                     <div id="${upVideoTriggerId}" class="w-e-up-btn">
                         <i class="w-e-icon-upload2"></i>
                     </div>
@@ -147,40 +149,40 @@ Video.prototype = {
                         }
                     ]
                 }, // second tab end
-                {
-                    // 标题
-                    title: '插入网络视频',
-                    // 模板
-                    tpl: `<div>
-                        <input id="${textValId}" type="text" class="block" placeholder="格式如：<iframe src=... ><\/iframe>"/>
-                        <div class="w-e-button-container">
-                            <button id="${btnId}" class="right">插入</button>
-                        </div>
-                    </div>`,
-                    // 事件绑定
-                    events: [
-                        {
-                            selector: '#' + btnId,
-                            type: 'click',
-                            fn: () => {
-                                const $text = $('#' + textValId)
-                                let val = $text.val().trim()
-
-                                // 测试用视频地址
-                                // <iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzc3MzM3Mg==' frameborder=0 'allowfullscreen'></iframe>
-                                val = '<iframe src="'+ val+ '" frameborder=0 allowfullscreen></iframe>'
-
-                                if (val) {
-                                    // 插入视频
-                                    this._insert(val)
-                                }
-
-                                // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                                return true
-                            }
-                        }
-                    ]
-                } //third tab end
+                // {
+                //     // 标题
+                //     title: '插入网络视频',
+                //     // 模板
+                //     tpl: `<div>
+                //         <input id="${textValId}" type="text" class="block" placeholder="格式如：<iframe src=... ><\/iframe>"/>
+                //         <div class="w-e-button-container">
+                //             <button id="${btnId}" class="right">插入</button>
+                //         </div>
+                //     </div>`,
+                //     // 事件绑定
+                //     events: [
+                //         {
+                //             selector: '#' + btnId,
+                //             type: 'click',
+                //             fn: () => {
+                //                 const $text = $('#' + textValId)
+                //                 let val = $text.val().trim()
+                //
+                //                 // 测试用视频地址
+                //                 // <iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzc3MzM3Mg==' frameborder=0 'allowfullscreen'></iframe>
+                //                 val = '<iframe src="'+ val+ '" frameborder=0 allowfullscreen></iframe>'
+                //
+                //                 if (val) {
+                //                     // 插入视频
+                //                     this._insert(val)
+                //                 }
+                //
+                //                 // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
+                //                 return true
+                //             }
+                //         }
+                //     ]
+                // } //third tab end
             ] // tabs end
         }) // panel end
 

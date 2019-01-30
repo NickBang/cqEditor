@@ -237,7 +237,13 @@ const config = {
     qiniu: false,
 
     // 插入推荐书籍搜索书籍url
-    searchBookServer: ''
+    searchBookServer: '',
+
+    // 默认上传视频 max size: 200M
+    uploadVideoMaxSize: 200 * 1024 * 1024,
+
+    // 默认上传音频 max size: 10M
+    uploadAudioMaxSize: 10 * 1024 * 1024
 
     // 上传图片自定义提示方法
     // customAlert: function (info) {

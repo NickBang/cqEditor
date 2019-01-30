@@ -102,7 +102,7 @@ UploadVideo.prototype = {
         video.src = link
     },
 
-    // 上传视频
+    // 上传视频 type( audio,  video )
     uploadVideo: function (files, type) {
         if (!files || !files.length) {
             return
@@ -113,10 +113,11 @@ UploadVideo.prototype = {
         const config = editor.config
         console.log('config', config)
         let uploadVideoServer = config.uploadVideoServer
-        const uploadImgShowBase64 = config.uploadImgShowBase64
-
-        const maxSize = config.uploadImgMaxSize
-        const maxSizeM = maxSize / 1024 / 1024
+        // 获取视频音频限制大小 可在config.js中修改
+        const vMaxSize = config.uploadVideoMaxSize
+        const vmaxSizeM = vMaxSize / 1024 / 1024
+        const aMaxSize = config.uploadAudioMaxSize
+        const amaxSizeM = aMaxSize / 1024 / 1024
         const maxLength = config.uploadImgMaxLength || 10000
         const uploadFileName = config.uploadFileName || ''
         const uploadImgParams = config.uploadImgParams || {}
@@ -129,13 +130,6 @@ UploadVideo.prototype = {
             withCredentials = false
         }
         const customUploadVideo = config.customUploadVideo
-
-        // if (!customUploadVideo) {
-        //     // 没有 customUploadVideo 的情况下，需要如下两个配置才能继续进行图片上传
-        //     if (!uploadVideoServer && !uploadImgShowBase64) {
-        //         return
-        //     }
-        // }
 
         // ------------------------------ 验证文件信息 ------------------------------
         const resultFiles = []
@@ -154,20 +148,31 @@ UploadVideo.prototype = {
                 errInfo.push(`【${name}】不是视频/音频文件`)
                 return
             }
-            // if (maxSize < size) {
-            //     // 上传视频过大
-            //     errInfo.push(`【${name}】大于 ${maxSizeM}M`)
-            //     return
-            // }
+
+            if (type === 'video') {
+                if (vmaxSizeM < size) {
+                    // 上传视频过大
+                    errInfo.push(`【${name}】大于 ${vmaxSizeM}M`)
+                    return
+                }
+            } else if (type === 'audio') {
+                if (amaxSizeM < size) {
+                    // 上传音频过大
+                    errInfo.push(`【${name}】大于 ${amaxSizeM}M`)
+                    return
+                }
+            }
+
 
             // 验证通过的加入结果列表
             resultFiles.push(file)
         })
         // 抛出验证信息
-        // if (errInfo.length) {
-        //     this._alert('图片验证未通过: \n' + errInfo.join('\n'))
-        //     return
-        // }
+        if (errInfo.length) {
+            // this._alert('文件验证未通过: \n' + errInfo.join('\n'))
+            alert('文件验证未通过: \n' + errInfo.join('\n'))
+            return
+        }
         // if (resultFiles.length > maxLength) {
         //     this._alert('一次最多上传' + maxLength + '张图片')
         //     return
@@ -227,7 +232,8 @@ UploadVideo.prototype = {
                     hooks.timeout(xhr, editor)
                 }
 
-                this._alert('上传文件超时')
+                // this._alert('上传文件超时')
+                alert('上传文件超时')
             }
 
             // 监控 progress
@@ -254,7 +260,8 @@ UploadVideo.prototype = {
                         }
 
                         // xhr 返回状态错误
-                        this._alert('上传发生错误', `上传发生错误，服务器返回状态是 ${xhr.status}`)
+                        // this._alert('上传发生错误', `上传发生错误，服务器返回状态是 ${xhr.status}`)
+                        alert(`上传发生错误，服务器返回状态是 ${xhr.status}`)
                         return
                     }
 
@@ -268,13 +275,14 @@ UploadVideo.prototype = {
                                 hooks.fail(xhr, editor, result)
                             }
 
-                            this._alert('上传视频失败', '上传视频返回结果错误，返回结果是: ' + result)
+                            // this._alert('上传视频失败', '上传视频返回结果错误，返回结果是: ' + result)
+                            alert('上传返回结果错误，返回结果是: ' + result)
                             return
                         }
                     }
                     if (!result.success) {
                         // 数据错误
-                        this._alert('上传视频失败', '上传图片返回结果错误，返回结果 errno=' + result.message)
+                        alert('上传返回结果错误，返回结果 error=' + result.message)
                     } else {
                         if (hooks.customInsert && typeof hooks.customInsert === 'function') {
                             console.log(hooks)
@@ -318,21 +326,6 @@ UploadVideo.prototype = {
 
             // 发送请求
             xhr.send(formdata)
-
-            // 注意，要 return 。不去操作接下来的 base64 显示方式
-            return
-        }
-
-        // ------------------------------ 显示 base64 格式 ------------------------------
-        if (uploadImgShowBase64) {
-            arrForEach(files, file => {
-                const _this = this
-                const reader = new FileReader()
-                reader.readAsDataURL(file)
-                reader.onload = function () {
-                    _this.insertLinkVideo(this.result)
-                }
-            })
         }
     }
 }

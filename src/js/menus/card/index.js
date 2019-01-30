@@ -99,7 +99,7 @@ Card.prototype = {
                                     return true
                                 } else {
                                     this.searchBook($val.val(), $card.val()).then(res => {
-                                        // 将选择的卡片类型带进去
+                                        // 将选择的卡片类型带进去  cardType
                                         res.content.cardType = $card.val()
                                         this.insertCard(res.content)
                                     })

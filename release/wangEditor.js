@@ -719,7 +719,13 @@ var config = {
     qiniu: false,
 
     // 插入推荐书籍搜索书籍url
-    searchBookServer: ''
+    searchBookServer: '',
+
+    // 默认上传视频 max size: 200M
+    uploadVideoMaxSize: 200 * 1024 * 1024,
+
+    // 默认上传音频 max size: 10M
+    uploadAudioMaxSize: 10 * 1024 * 1024
 
     // 上传图片自定义提示方法
     // customAlert: function (info) {
@@ -2596,8 +2602,6 @@ Video.prototype = {
     },
 
     _createPanel: function _createPanel() {
-        var _this = this;
-
         var uploadVideo = this.editor.uploadVideo;
         // 创建网络视频 id
         var textValId = getRandom('text-val');
@@ -2616,7 +2620,7 @@ Video.prototype = {
                 // 标题
                 title: '插入音频',
                 // 模板
-                tpl: '<div class="w-e-up-img-container">\n                    <div id="' + upAudioTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upAudioFileId + '" type="file" accept="audio/mpeg,audio/mp3"/>\n                    </div>\n                </div>',
+                tpl: '<div class="w-e-up-img-container">\n                    <div style="font-size: 14px">\u683C\u5F0F\u652F\u6301MP3\u97F3\u9891\u683C\u5F0F\uFF0C\u6587\u4EF6\u5927\u5C0F\u4E0D\u8D85\u8FC710M</div>\n                    <div id="' + upAudioTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upAudioFileId + '" type="file" accept="audio/mpeg,audio/mp3"/>\n                    </div>\n                </div>',
                 // 事件绑定
                 events: [{
                     // 触发选择音频
@@ -2660,7 +2664,7 @@ Video.prototype = {
                 // 标题
                 title: '插入视频',
                 // 模板
-                tpl: '<div class="w-e-up-img-container">\n                    <div id="' + upVideoTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upVideoFileId + '" type="file" accept="video/mp4"/>\n                    </div>\n                </div>',
+                tpl: '<div class="w-e-up-img-container">\n                    <div style="font-size: 14px">\u6807\u6E05\u5206\u8FA8\u7387\u7684mp4\u683C\u5F0F\u89C6\u9891\uFF0C\u5927\u5C0F\u4E0D\u8D85\u8FC7200m</div>\n                    <div id="' + upVideoTriggerId + '" class="w-e-up-btn">\n                        <i class="w-e-icon-upload2"></i>\n                    </div>\n                    <div style="display:none;">\n                        <input id="' + upVideoFileId + '" type="file" accept="video/mp4"/>\n                    </div>\n                </div>',
                 // 事件绑定
                 events: [{
                     // 触发选择视频
@@ -2699,33 +2703,6 @@ Video.prototype = {
                         return true;
                     }
                 }]
-            }, // second tab end
-            {
-                // 标题
-                title: '插入网络视频',
-                // 模板
-                tpl: '<div>\n                        <input id="' + textValId + '" type="text" class="block" placeholder="\u683C\u5F0F\u5982\uFF1A<iframe src=... ></iframe>"/>\n                        <div class="w-e-button-container">\n                            <button id="' + btnId + '" class="right">\u63D2\u5165</button>\n                        </div>\n                    </div>',
-                // 事件绑定
-                events: [{
-                    selector: '#' + btnId,
-                    type: 'click',
-                    fn: function fn() {
-                        var $text = $('#' + textValId);
-                        var val = $text.val().trim();
-
-                        // 测试用视频地址
-                        // <iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzc3MzM3Mg==' frameborder=0 'allowfullscreen'></iframe>
-                        val = '<iframe src="' + val + '" frameborder=0 allowfullscreen></iframe>';
-
-                        if (val) {
-                            // 插入视频
-                            _this._insert(val);
-                        }
-
-                        // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                        return true;
-                    }
-                }] //third tab end
             }] // tabs end
         }); // panel end
 
@@ -3041,7 +3018,7 @@ Card.prototype = {
                             return true;
                         } else {
                             _this.searchBook($val.val(), $card.val()).then(function (res) {
-                                // 将选择的卡片类型带进去
+                                // 将选择的卡片类型带进去  cardType
                                 res.content.cardType = $card.val();
                                 _this.insertCard(res.content);
                             });
@@ -4684,9 +4661,9 @@ UploadVideo.prototype = {
         video.src = link;
     },
 
-    // 上传视频
+    // 上传视频 type( audio,  video )
     uploadVideo: function uploadVideo(files, type) {
-        var _this2 = this;
+        var _this = this;
 
         if (!files || !files.length) {
             return;
@@ -4697,10 +4674,11 @@ UploadVideo.prototype = {
         var config = editor.config;
         console.log('config', config);
         var uploadVideoServer = config.uploadVideoServer;
-        var uploadImgShowBase64 = config.uploadImgShowBase64;
-
-        var maxSize = config.uploadImgMaxSize;
-        var maxSizeM = maxSize / 1024 / 1024;
+        // 获取视频音频限制大小 可在config.js中修改
+        var vMaxSize = config.uploadVideoMaxSize;
+        var vmaxSizeM = vMaxSize / 1024 / 1024;
+        var aMaxSize = config.uploadAudioMaxSize;
+        var amaxSizeM = aMaxSize / 1024 / 1024;
         var maxLength = config.uploadImgMaxLength || 10000;
         var uploadFileName = config.uploadFileName || '';
         var uploadImgParams = config.uploadImgParams || {};
@@ -4713,13 +4691,6 @@ UploadVideo.prototype = {
             withCredentials = false;
         }
         var customUploadVideo = config.customUploadVideo;
-
-        // if (!customUploadVideo) {
-        //     // 没有 customUploadVideo 的情况下，需要如下两个配置才能继续进行图片上传
-        //     if (!uploadVideoServer && !uploadImgShowBase64) {
-        //         return
-        //     }
-        // }
 
         // ------------------------------ 验证文件信息 ------------------------------
         var resultFiles = [];
@@ -4738,20 +4709,30 @@ UploadVideo.prototype = {
                 errInfo.push('\u3010' + name + '\u3011\u4E0D\u662F\u89C6\u9891/\u97F3\u9891\u6587\u4EF6');
                 return;
             }
-            // if (maxSize < size) {
-            //     // 上传视频过大
-            //     errInfo.push(`【${name}】大于 ${maxSizeM}M`)
-            //     return
-            // }
+
+            if (type === 'video') {
+                if (vmaxSizeM < size) {
+                    // 上传视频过大
+                    errInfo.push('\u3010' + name + '\u3011\u5927\u4E8E ' + vmaxSizeM + 'M');
+                    return;
+                }
+            } else if (type === 'audio') {
+                if (amaxSizeM < size) {
+                    // 上传音频过大
+                    errInfo.push('\u3010' + name + '\u3011\u5927\u4E8E ' + amaxSizeM + 'M');
+                    return;
+                }
+            }
 
             // 验证通过的加入结果列表
             resultFiles.push(file);
         });
         // 抛出验证信息
-        // if (errInfo.length) {
-        //     this._alert('图片验证未通过: \n' + errInfo.join('\n'))
-        //     return
-        // }
+        if (errInfo.length) {
+            // this._alert('文件验证未通过: \n' + errInfo.join('\n'))
+            alert('文件验证未通过: \n' + errInfo.join('\n'));
+            return;
+        }
         // if (resultFiles.length > maxLength) {
         //     this._alert('一次最多上传' + maxLength + '张图片')
         //     return
@@ -4811,7 +4792,8 @@ UploadVideo.prototype = {
                     hooks.timeout(xhr, editor);
                 }
 
-                _this2._alert('上传文件超时');
+                // this._alert('上传文件超时')
+                alert('上传文件超时');
             };
 
             // 监控 progress
@@ -4838,7 +4820,8 @@ UploadVideo.prototype = {
                         }
 
                         // xhr 返回状态错误
-                        _this2._alert('上传发生错误', '\u4E0A\u4F20\u53D1\u751F\u9519\u8BEF\uFF0C\u670D\u52A1\u5668\u8FD4\u56DE\u72B6\u6001\u662F ' + xhr.status);
+                        // this._alert('上传发生错误', `上传发生错误，服务器返回状态是 ${xhr.status}`)
+                        alert('\u4E0A\u4F20\u53D1\u751F\u9519\u8BEF\uFF0C\u670D\u52A1\u5668\u8FD4\u56DE\u72B6\u6001\u662F ' + xhr.status);
                         return;
                     }
 
@@ -4852,23 +4835,24 @@ UploadVideo.prototype = {
                                 hooks.fail(xhr, editor, result);
                             }
 
-                            _this2._alert('上传视频失败', '上传视频返回结果错误，返回结果是: ' + result);
+                            // this._alert('上传视频失败', '上传视频返回结果错误，返回结果是: ' + result)
+                            alert('上传返回结果错误，返回结果是: ' + result);
                             return;
                         }
                     }
                     if (!result.success) {
                         // 数据错误
-                        _this2._alert('上传视频失败', '上传图片返回结果错误，返回结果 errno=' + result.message);
+                        alert('上传返回结果错误，返回结果 error=' + result.message);
                     } else {
                         if (hooks.customInsert && typeof hooks.customInsert === 'function') {
                             console.log(hooks);
                             // 使用者自定义插入方法
-                            hooks.customInsert(_this2.insertLinkVideo.bind(_this2), result, editor, type);
+                            hooks.customInsert(_this.insertLinkVideo.bind(_this), result, editor, type);
                         } else {
                             // 将图片插入编辑器
                             var data = result.data || [];
                             data.forEach(function (link) {
-                                _this2.insertLinkVideo(link, type);
+                                _this.insertLinkVideo(link, type);
                             });
                         }
 
@@ -4902,21 +4886,6 @@ UploadVideo.prototype = {
 
             // 发送请求
             xhr.send(formdata);
-
-            // 注意，要 return 。不去操作接下来的 base64 显示方式
-            return;
-        }
-
-        // ------------------------------ 显示 base64 格式 ------------------------------
-        if (uploadImgShowBase64) {
-            arrForEach(files, function (file) {
-                var _this = _this2;
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                    _this.insertLinkVideo(this.result);
-                };
-            });
         }
     }
 };
