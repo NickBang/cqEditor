@@ -115,15 +115,15 @@ UploadVideo.prototype = {
         let uploadVideoServer = config.uploadVideoServer
         // 获取视频音频限制大小 可在config.js中修改
         const vMaxSize = config.uploadVideoMaxSize
-        const vmaxSizeM = vMaxSize / 1024 / 1024
+        const vMaxSizeM = vMaxSize / 1024 / 1024
         const aMaxSize = config.uploadAudioMaxSize
-        const amaxSizeM = aMaxSize / 1024 / 1024
+        const aMaxSizeM = aMaxSize / 1024 / 1024
         const maxLength = config.uploadImgMaxLength || 10000
         const uploadFileName = config.uploadFileName || ''
         const uploadImgParams = config.uploadImgParams || {}
         const uploadImgParamsWithUrl = config.uploadImgParamsWithUrl
         const uploadImgHeaders = config.uploadImgHeaders || {}
-        const hooks = config.uploadImgHooks || {}
+        const hooks = config.uploadVideoHooks || {}
         const timeout = config.uploadImgTimeout || 3000
         let withCredentials = config.withCredentials
         if (withCredentials == null) {
@@ -150,15 +150,16 @@ UploadVideo.prototype = {
             }
 
             if (type === 'video') {
-                if (vmaxSizeM < size) {
+                console.log(vMaxSize, size)
+                if (vMaxSize < size) {
                     // 上传视频过大
-                    errInfo.push(`【${name}】大于 ${vmaxSizeM}M`)
+                    errInfo.push(`【${name}】大于 ${vMaxSizeM}M`)
                     return
                 }
             } else if (type === 'audio') {
-                if (amaxSizeM < size) {
+                if (aMaxSize < size) {
                     // 上传音频过大
-                    errInfo.push(`【${name}】大于 ${amaxSizeM}M`)
+                    errInfo.push(`【${name}】大于 ${aMaxSizeM}M`)
                     return
                 }
             }
@@ -266,6 +267,7 @@ UploadVideo.prototype = {
                     }
 
                     result = xhr.responseText
+                    console.log(result)
                     if (typeof result !== 'object') {
                         try {
                             result = JSON.parse(result)
@@ -285,15 +287,12 @@ UploadVideo.prototype = {
                         alert('上传返回结果错误，返回结果 error=' + result.message)
                     } else {
                         if (hooks.customInsert && typeof hooks.customInsert === 'function') {
-                            console.log(hooks)
                             // 使用者自定义插入方法
                             hooks.customInsert(this.insertLinkVideo.bind(this), result, editor, type)
                         } else {
-                            // 将图片插入编辑器
-                            const data = result.data || []
-                            data.forEach(link => {
-                                this.insertLinkVideo(link, type)
-                            })
+                            // 将视频插入编辑器
+                            const url = result.content.url || ''
+                            this.insertLinkVideo(url, type)
                         }
 
                         // hook - success

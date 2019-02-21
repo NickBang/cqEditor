@@ -45,7 +45,7 @@ Card.prototype = {
 
     insertCard: function (data) {
         console.log(data)
-        editor.cmd.do('insertHTML',
+        this.editor.cmd.do('insertHTML',
             '<br><div contenteditable="false" class="cq-card" value="'+ JSON.stringify(data) +'" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
             // '<div contenteditable="false" class="ca-card-div">' +
             '<div style="width: 100px;"><img style="width: 100%;" src="'+ data.coverPath +'" alt=""></div>' +

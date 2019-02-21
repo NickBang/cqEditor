@@ -306,6 +306,47 @@ Editor.prototype = {
         
     },
 
+    // 添加script标签   将 自定义 代码添加到 <script> 中
+    _initScript: function () {
+        let code = `function overIndex(_this) {
+            // console.log(_this)
+            let c_btn = _this.getElementsByClassName('cq-close-icon')[0]
+            // console.log(c_btn)
+            c_btn.style.display = 'block'
+
+        }
+        function outIndex (_this) {
+            let c_btn = _this.getElementsByClassName('cq-close-icon')[0]
+            c_btn.style.display = 'none'
+        }
+        function closeVideo (_this) {
+            // 获取点击的对应视频
+            let v = _this.parentElement.parentElement
+            console.log(v);
+            // 删除video标签并生成新的p
+            let p = document.createElement('p')
+            let br = document.createElement('br')
+            let parent = v.parentElement
+            let removed = parent.removeChild(v)
+            parent.appendChild(p)
+            p.appendChild(br)
+        }
+        function closeCard (_this) {
+            // 获取点击的对应卡片
+            let v = _this.parentElement
+            console.log(v);
+            // 删除标签并生成新的p
+            let p = document.createElement('p')
+            let br = document.createElement('br')
+            let parent = v.parentElement
+            let removed = parent.removeChild(v)
+        }`
+        let script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.innerHTML = code
+        document.body.appendChild(script)
+    },
+
     // 创建编辑器
     create: function () {
         // 初始化配置信息
@@ -337,6 +378,9 @@ Editor.prototype = {
 
         // 绑定事件
         this._bindEvent()
+
+        // 添加script标签
+        this._initScript()
     },
 
     // 解绑所有事件（暂时不对外开放）

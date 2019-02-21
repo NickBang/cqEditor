@@ -233,6 +233,38 @@ const config = {
         }
     },
 
+    // 上传视频 hook
+    uploadVideoHooks: {
+        // customInsert: function (insertLinkImg, result, editor) {
+        //     console.log('customInsert')
+        //     // 图片上传并返回结果，自定义插入图片的事件，而不是编辑器自动插入图片
+        //     const data = result.data1 || []
+        //     data.forEach(link => {
+        //         insertLinkImg(link)
+        //     })
+        // },
+        before: function (xhr, editor, files) {
+            // 图片上传之前触发
+
+            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+            // return {
+            //     prevent: true,
+            //     msg: '放弃上传'
+            // }
+        },
+        success: function (xhr, editor, result) {
+            // 图片上传并返回结果，图片插入成功之后触发
+        },
+        fail: function (xhr, editor, result) {
+            // 图片上传并返回结果，但图片插入错误时触发
+        },
+        error: function (xhr, editor) {
+            // 图片上传出错时触发
+        },
+        timeout: function (xhr, editor) {
+            // 图片上传超时时触发
+        }
+    },
     // 是否上传七牛云，默认为 false
     qiniu: false,
 
