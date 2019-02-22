@@ -3007,13 +3007,9 @@ Card.prototype = {
         }
     },
 
-    insertCard: function insertCard(data) {
+    insertCard: function insertCard(data, obj) {
         console.log(data);
-        this.editor.cmd.do('insertHTML', '<br><div contenteditable="false" class="cq-card" value="' + JSON.stringify(data) + '" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
-        // '<div contenteditable="false" class="ca-card-div">' +
-        '<div style="width: 100px;"><img style="width: 100%;" src="' + data.coverPath + '" alt=""></div>' + '<div style="width: 190px;margin-left: 10px;"><p>' + data.name + '</p></div>' + '<img onclick="closeCard(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' +
-        // '</div>' +
-        '</div><br>');
+        this.editor.cmd.do('insertHTML', '<br><div contenteditable="false" class="cq-card" value="' + obj.id + '" type="' + obj.type + '" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' + '<div style="width: 100px;"><img style="width: 100%;" src="' + data.coverPath + '" alt=""></div>' + '<div style="width: 190px;margin-left: 10px;"><p>' + data.name + '</p></div>' + '<img onclick="closeCard(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' + '</div><br>');
     },
 
     _createPanel: function _createPanel() {
@@ -3049,10 +3045,14 @@ Card.prototype = {
                             // 返回true 关闭
                             return true;
                         } else {
+                            var obj = {
+                                id: $val.val(),
+                                type: $card.val()
+                            };
                             _this.searchBook($val.val(), $card.val()).then(function (res) {
                                 // 将选择的卡片类型带进去  cardType
-                                res.content.cardType = $card.val();
-                                _this.insertCard(res.content);
+                                // res.content.cardType = $card.val()
+                                _this.insertCard(res.content, obj);
                             });
                             // 关闭 panel
                             return true;
