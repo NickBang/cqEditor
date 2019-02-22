@@ -375,17 +375,20 @@
 .w-e-text-container .w-e-panel-container .w-e-panel-tab-content .w-e-card-select {
   width: 200px;
   height: 30px;
+  margin-bottom: 20px;
 }
 .w-e-text-container .w-e-panel-container .w-e-panel-tab-content .w-e-card-update {
-  width: 80px;
+  width: 120px;
   height: 40px;
   line-height: 40px;
   border-radius: 6px;
   text-align: center;
-  background: hotpink;
+  background: #3e76f6;
   font-size: 14px;
   color: #fff;
   cursor: pointer;
+  float: right;
+  margin-bottom: 10px;
 }
 .w-e-text-container .w-e-panel-container .w-e-emoticon-container .w-e-item {
   cursor: pointer;

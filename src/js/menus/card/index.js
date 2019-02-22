@@ -76,8 +76,8 @@ Card.prototype = {
                                 <option value="3">文章专栏</option>
                                 <option value="4">作者</option>
                             </select>
-                            <input type="text" placeholder="请输入对应内容id" id="${textValId}" class="block">
-                            <div class="w-e-card-update" id="${btnId}"></div>
+                            <input type="text" placeholder="请输入对应内容id" id="${textValId}" class="block w-e-card-input">
+                            <div class="w-e-card-update" id="${btnId}">确认插入</div>
                           </div>`,
                     // 事件绑定
                     events: [

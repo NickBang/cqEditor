@@ -1,10 +1,10 @@
 {
   "name": "cqeditor",
   "title": "cqEditor",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "cqEditor - 基于javascript和css开发的 web 富文本编辑器， 轻量、简洁、易用、开源免费",
   "author": {
-    "name": "cq",
+    "name": "NickBang",
     "url": "https://github.com/NickBang"
   },
   "keywords": [
