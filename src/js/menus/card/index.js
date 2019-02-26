@@ -151,9 +151,8 @@ Card.prototype = {
                 let result
                 if (xhr.readyState === 4) {
                     if (xhr.status < 200 || xhr.status >= 300) {
-
                         // xhr 返回状态错误
-                        this._alert('查询发生错误', `服务器返回状态是 ${xhr.status}`)
+                        alert(`查询书籍发生错误\n信息为：${xhr.response}`)
                         return
                     }
 
@@ -163,14 +162,14 @@ Card.prototype = {
                             result = JSON.parse(result)
                         } catch (ex) {
 
-                            this._alert('失败', '返回结果错误，返回结果是: ' + result)
+                            alert('返回结果错误\n返回结果是: ' + result)
                             return
                         }
                     }
                     // console.log(result)
                     if (!result.success) {
                         // 数据错误
-                        this._alert('失败', '返回结果错误，返回结果 error=' + result.message)
+                        alert('失败,返回结果错误\n返回结果 error=' + result.message)
                     } else {
                         resolve(result)
                     }

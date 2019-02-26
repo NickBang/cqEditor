@@ -3099,9 +3099,8 @@ Card.prototype = {
                 var result = void 0;
                 if (xhr.readyState === 4) {
                     if (xhr.status < 200 || xhr.status >= 300) {
-
                         // xhr 返回状态错误
-                        _this2._alert('查询发生错误', '\u670D\u52A1\u5668\u8FD4\u56DE\u72B6\u6001\u662F ' + xhr.status);
+                        alert('\u67E5\u8BE2\u4E66\u7C4D\u53D1\u751F\u9519\u8BEF\n\u4FE1\u606F\u4E3A\uFF1A' + xhr.response);
                         return;
                     }
 
@@ -3111,14 +3110,14 @@ Card.prototype = {
                             result = JSON.parse(result);
                         } catch (ex) {
 
-                            _this2._alert('失败', '返回结果错误，返回结果是: ' + result);
+                            alert('返回结果错误\n返回结果是: ' + result);
                             return;
                         }
                     }
                     // console.log(result)
                     if (!result.success) {
                         // 数据错误
-                        _this2._alert('失败', '返回结果错误，返回结果 error=' + result.message);
+                        alert('失败,返回结果错误\n返回结果 error=' + result.message);
                     } else {
                         resolve(result);
                     }
