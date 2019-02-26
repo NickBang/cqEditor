@@ -67,11 +67,12 @@
   display: flex;
   position: relative;
   top: 0;
+  background: beige;
 }
 .w-e-text-container .w-e-text .cq-card .cq-close-icon {
   position: absolute;
-  top: -8px;
-  right: -15px;
+  top: -6px;
+  right: -8px;
   z-index: 99;
   width: 20px!important;
   display: none;

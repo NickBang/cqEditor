@@ -47,7 +47,7 @@ Card.prototype = {
         console.log(data)
         this.editor.cmd.do('insertHTML',
             '<br><div contenteditable="false" class="cq-card" value="'+ obj.id +'" type="'+ obj.type +'" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
-            '<div style="width: 100px;"><img style="width: 100%;" src="'+ data.coverPath +'" alt=""></div>' +
+            '<div style="width: 100px;"><img style="width: 100%;height: 100%;" src="'+ data.coverPath +'" alt=""></div>' +
             '<div style="width: 190px;margin-left: 10px;"><p>'+ data.name +'</p></div>' +
             '<img onclick="closeCard(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' +
             '</div><br>'
