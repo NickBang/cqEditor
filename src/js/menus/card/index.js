@@ -45,10 +45,25 @@ Card.prototype = {
 
     insertCard: function (data, obj) {
         console.log(data)
+        let name,src
+        // 数据格式化
+        if (obj.type === '1') {
+            name = data.name
+            src = data.coverPath
+        } else if (obj.type === '2') {
+            name = data.albumName
+            src = data.coverUrl
+        } else if (obj.type === '3') {
+            name = data.title
+            src = data.imgUrl
+        } else if (obj.type === '4') {
+            name = data.authorName
+            src = data.avatarPath
+        }
         this.editor.cmd.do('insertHTML',
             '<br><div contenteditable="false" class="cq-card" value="'+ obj.id +'" type="'+ obj.type +'" onmouseover="overIndex(this)" onmouseout="outIndex(this)">' +
-            '<div style="width: 100px;"><img style="width: 100%;height: 100%;" src="'+ data.coverPath +'" alt=""></div>' +
-            '<div style="width: 190px;margin-left: 10px;"><p>'+ data.name +'</p></div>' +
+            '<div style="width: 100px;"><img style="width: 100%;height: 100%;" src="'+ src +'" alt=""></div>' +
+            '<div style="width: 190px;margin-left: 10px;"><p>'+ name +'</p></div>' +
             '<img onclick="closeCard(this)" class="cq-close-icon" src="http://koalareading-demo.oss-cn-beijing.aliyuncs.com/img/cq-close-icon.png" alt="">' +
             '</div><br>'
         )
@@ -86,9 +101,9 @@ Card.prototype = {
                             selector: '#' + btnId,
                             type: 'click',
                             fn: () => {
-                                // 输入的图书id
+                                // 输入的资源id
                                 const $val = $('#' + textValId)
-                                // 选择的图书类型
+                                // 选择的资源类型
                                 const $card = $('#' + cardId)
                                 // console.log($val.val())
                                 // console.log($card.val())
@@ -100,9 +115,8 @@ Card.prototype = {
                                         id: $val.val(),
                                         type: $card.val()
                                     }
-                                    this.searchBook($val.val(), $card.val()).then(res => {
-                                        // 将选择的卡片类型带进去  cardType
-                                        // res.content.cardType = $card.val()
+                                    this.search($val.val(), $card.val()).then(res => {
+                                        console.log('res.content===========>', res.content)
                                         this.insertCard(res.content, obj)
                                     })
                                     // 关闭 panel
@@ -122,7 +136,7 @@ Card.prototype = {
         // 记录属性
         this.panel = panel
     },
-    searchBook(id, type) {
+    search(id, type) {
         // ------配置信息-------
         const editor = this.editor
         const config = editor.config
@@ -132,18 +146,28 @@ Card.prototype = {
         if (withCredentials == null) {
             withCredentials = false
         }
-        let searchBookServer = config.searchBookServer + id
+        // 四种类型的卡片,不同的server,server在页面配置config
+        let server
+        if (type === '1') {
+            server = config.searchBookServer + id
+        } else if (type === '2') {
+            server = config.searchAudioServer + id
+        } else if (type === '3') {
+            server = config.searchArticlesServer + id
+        } else if (type === '4') {
+            server = config.searchAuthorServer + id
+        }
 
         return new Promise((resolve, reject) => {
 
             // 定义 xhr
             const xhr = new XMLHttpRequest()
-            xhr.open('GET', searchBookServer)
+            xhr.open('GET', server)
 
             // 设置超时
             xhr.timeout = timeout
             xhr.ontimeout = () => {
-                this._alert('查询书籍超时')
+                alert('查询超时')
             }
 
             // 返回数据
@@ -152,7 +176,7 @@ Card.prototype = {
                 if (xhr.readyState === 4) {
                     if (xhr.status < 200 || xhr.status >= 300) {
                         // xhr 返回状态错误
-                        alert(`查询书籍发生错误\n信息为：${xhr.response}`)
+                        alert(`查询发生错误\n信息为：${xhr.response}`)
                         return
                     }
 

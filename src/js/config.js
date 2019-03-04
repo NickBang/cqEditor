@@ -271,6 +271,15 @@ const config = {
     // 插入推荐书籍搜索书籍url
     searchBookServer: '',
 
+    // 插入作者url
+    searchAuthorServer: '',
+
+    // 插入音频专辑url
+    searchAudioServer: '',
+
+    // 插入专栏文章url
+    searchArticlesServer: '',
+
     // 默认上传视频 max size: 200M
     uploadVideoMaxSize: 200 * 1024 * 1024,
 
