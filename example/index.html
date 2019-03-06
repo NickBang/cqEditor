@@ -60,10 +60,14 @@
         editor.customConfig.uploadImgServer = 'http://demo.intr.enjoyreading.net/fileupload'
         editor.customConfig.uploadVideoServer = 'http://demo.intr.enjoyreading.net/fileupload/multimediaUpload'
 
-        editor.customConfig.searchBookServer = 'https://demo.koalareading.com/library/book/findAllById/'
+        // 书籍
+        editor.customConfig.searchBookServer = 'https://demo.koalareading.com/library/recommendResourceDetail/findBookDetail?resourceId='
+        // 音频专辑
         editor.customConfig.searchAudioServer = 'https://demo.koalareading.com/library/recommendResourceDetail/findListeningAlbumDetail?resourceId='
+        // 作者
         editor.customConfig.searchAuthorServer = 'https://demo.koalareading.com/library/open/author/'
-        editor.customConfig.searchArticlesServer = 'https://demo.koalareading.com/library/readResource/queryCompilation?userId=0&name=&type=7&compilationId='
+
+        editor.customConfig.searchArticlesServer = 'https://demo.koalareading.com/library/recommendResourceDetail/findColumnDetail?resourceId='
 
         editor.customConfig.debug = true
         // 自定义菜单配置

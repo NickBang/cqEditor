@@ -3022,14 +3022,14 @@ Card.prototype = {
             src = void 0;
         // 数据格式化
         if (obj.type === '1') {
-            name = data.name;
-            src = data.coverPath;
+            name = data.bookName;
+            src = data.coverUrl;
         } else if (obj.type === '2') {
             name = data.albumName;
             src = data.coverUrl;
         } else if (obj.type === '3') {
-            name = data.title;
-            src = data.imgUrl;
+            name = data.columnName;
+            src = data.coverUrl;
         } else if (obj.type === '4') {
             name = data.authorName;
             src = data.avatarPath;
